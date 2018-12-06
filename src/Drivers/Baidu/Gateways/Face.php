@@ -10,8 +10,91 @@
 namespace Crisen\AI\Drivers\Baidu\Gateways;
 
 
+use mysql_xdevapi\Exception;
+
 class Face extends AbstractBaiduGateway
 {
+
+
+    protected $image;
+    protected $imageType;
+
+    /**
+     * @return array
+     */
+    public function resourcePath(): array
+    {
+        return [
+            'rest', '2.0', 'face', 'v3'
+        ];
+    }
+
+
+    public function send($action, $options = [])
+    {
+        $data = [];
+        $data['image'] = $this->image;
+        $data['image_type'] = $this->imageType;
+        $data = array_merge($data, $options);
+        $response = $this->client->post($this->buildUrl($action), $data);
+        if (!is_array($response)) {
+            throw new Exception('接口请求错误');
+        }
+        return json_decode($response['content'], true);
+    }
+
+
+    /**
+     * @param $path
+     * @return AbstractBaiduGateway
+     */
+    public function path($path)
+    {
+        $image = base64_encode(file_get_contents($path));
+        return $this->base64($image);
+    }
+
+
+    /**
+     * @param string $image
+     * @return AbstractBaiduGateway
+     */
+    public function url(string $image)
+    {
+        return $this->image($image, 'URL');
+    }
+
+    /**
+     * @param string $image
+     * @return AbstractBaiduGateway
+     */
+    public function base64(string $image)
+    {
+        return $this->image($image, 'BASE64');
+    }
+
+
+    /**
+     * @param string $image
+     * @return AbstractBaiduGateway
+     */
+    public function faceToken(string $image)
+    {
+        return $this->image($image, 'FACE_TOKEN');
+    }
+
+
+    /**
+     * @param string $image
+     * @param string $imageType
+     * @return $this
+     */
+    public function image(string $image, string $imageType = 'BASE64')
+    {
+        $this->image = $image;
+        $this->imageType = $imageType;
+        return $this;
+    }
 
 
     /**
@@ -38,132 +121,11 @@ class Face extends AbstractBaiduGateway
 
 
     /**
-     * 人脸注册
      * @param array $options
      * @return array
-     * @throws \Crisen\AI\Exceptions\Exception
      */
-    public function add($options = [])
+    public function search($options = [])
     {
-        return $this->send('faceset/user/add', $options);
+        return $this->send('search', $options);
     }
-
-
-    /**
-     * 人脸更新
-     * @param array $options
-     * @return array
-     * @throws \Crisen\AI\Exceptions\Exception
-     */
-    public function update($options = [])
-    {
-        return $this->send('faceset/user/update', $options);
-    }
-
-
-    /**
-     * 人脸删除
-     * @param array $options
-     * @return array
-     * @throws \Crisen\AI\Exceptions\Exception
-     */
-    public function delete($options = [])
-    {
-        return $this->send('faceset/face/delete', $options);
-    }
-
-
-    /**
-     * 用户信息查询
-     * @param array $options
-     * @return array
-     * @throws \Crisen\AI\Exceptions\Exception
-     */
-    public function user($options = [])
-    {
-        return $this->send('faceset/user/get', $options);
-    }
-
-
-    /**
-     * 获取用户人脸列表
-     * @param array $options
-     * @return array
-     * @throws \Crisen\AI\Exceptions\Exception
-     */
-    public function getList($options = [])
-    {
-        return $this->send('faceset/face/getlist', $options);
-    }
-
-
-    /**
-     * 获取用户列表
-     * @param array $options
-     * @return array
-     * @throws \Crisen\AI\Exceptions\Exception
-     */
-    public function getUserList($options = [])
-    {
-        return $this->send('faceset/face/getusers', $options);
-    }
-
-
-    /**
-     * 复制用户
-     * @param array $options
-     * @return array
-     * @throws \Crisen\AI\Exceptions\Exception
-     */
-    public function copyUser($options = [])
-    {
-        return $this->send('faceset/user/copy', $options);
-    }
-
-
-    /**
-     * 删除用户
-     * @param array $options
-     * @return array
-     * @throws \Crisen\AI\Exceptions\Exception
-     */
-    public function deleteUser($options = [])
-    {
-        return $this->send('faceset/user/delete', $options);
-    }
-
-    /**
-     * 用户组管理
-     * @param array $options
-     * @return array
-     * @throws \Crisen\AI\Exceptions\Exception
-     */
-    public function groupAdd($options = [])
-    {
-        return $this->send('faceset/group/add', $options);
-    }
-
-    /**
-     * 用户组删除
-     * @param array $options
-     * @return array
-     * @throws \Crisen\AI\Exceptions\Exception
-     */
-    public function groupDelete($options = [])
-    {
-        return $this->send('faceset/group/delete', $options);
-    }
-
-
-    /**
-     * 用户组列表
-     * @param array $options
-     * @return array
-     * @throws \Crisen\AI\Exceptions\Exception
-     */
-    public function groupList($options = [])
-    {
-        return $this->send('faceset/group/getlist', $options);
-    }
-
 }

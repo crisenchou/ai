@@ -9,13 +9,46 @@
 namespace Crisen\AI\Drivers\Baidu\Gateways;
 
 
-use Crisen\AI\Contracts\GatewayInterface;
-
-class ImageCensor implements GatewayInterface
+class ImageCensor extends AbstractBaiduGateway
 {
-    
-    public function getName()
+
+
+    /**
+     * @return array
+     */
+    public function resourcePath(): array
     {
-        return 'antiporn';
+        return [
+            'rest', '2.0', 'antiporn', 'v1'
+        ];
     }
+
+
+    public function send($action, $data = [])
+    {
+        // TODO: Implement send() method.
+    }
+
+    /**
+     * @param array $options
+     * @return array
+     * @throws \Crisen\AI\Exceptions\Exception
+     */
+    public function detect($options = [])
+    {
+        return $this->send('detect', $options);
+    }
+
+
+    /**
+     * @param array $options
+     * @return array
+     * @throws \Crisen\AI\Exceptions\Exception
+     */
+    public function detectGif($options = [])
+    {
+        return $this->send('detect_gif', $options);
+    }
+
+
 }

@@ -10,14 +10,24 @@
 namespace Crisen\AI\Drivers\Baidu;
 
 
-use Crisen\AI\Contracts\GatewayInterface;
+use Crisen\AI\Drivers\Baidu\Gateways\AbstractBaiduGateway;
 
 
-class Speech implements GatewayInterface
+class Speech extends AbstractBaiduGateway
 {
-    
-    public function getName()
+
+
+    public function resourcePath(): array
     {
-        return 'nlp';
+        return [
+            'rest', '2.0', 'image-classify', 'v3'
+        ];
     }
+
+
+    public function send($action, $data = [])
+    {
+        // TODO: Implement send() method.
+    }
+
 }

@@ -7,18 +7,24 @@
  */
 
 
-namespace Crisen\AI\Drivers\Baidu;
+namespace Crisen\AI\Drivers\Baidu\Gateways;
 
 
-use Crisen\AI\Contracts\GatewayInterface;
-
-
-class Ocr implements GatewayInterface
+class Ocr extends AbstractBaiduGateway
 {
 
-
-    public function getName()
+    public function resourcePath(): array
     {
-        return 'nlp';
+        return [
+            'rest', '2.0', 'ocr', 'v1'
+        ];
     }
+
+
+    public function send($action, $data = [])
+    {
+        // TODO: Implement send() method.
+    }
+
+
 }

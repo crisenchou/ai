@@ -16,5 +16,10 @@ class BaseTest extends TestCase
         'api_key' => 'wRdtkGRHrBmeamI6gjmbbVMj',
         'secret_key' => 'ZeWb0V8z4tHGeWA36p7mNOjgMoXcMrEl'
     ];
-    
+
+
+    public function assertSuccess($response)
+    {
+        $this->assertArrayHasKey('code', $response);
+    }
 }

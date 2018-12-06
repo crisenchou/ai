@@ -70,25 +70,39 @@ class Baidu implements DriverInterface
     }
 
 
-    /**
-     * @param string $name
-     * @param string $version
-     * @return mixed
-     * @throws Exception
-     */
-    public function gateway($name = "", $version = 'v1')
+    public function getName($name)
     {
-        $gateway = __NAMESPACE__ . '\\Gateways\\' . ucfirst($name);
-        if (class_exists($gateway)) {
-            return self::make($gateway, $name, $version);
+        $gateway = '';
+        if (strpos($name, '.')) {
+            $names = explode('.', $name);
+            foreach ($names as $name) {
+                $gateway .= ucfirst($name);
+            }
+        } else {
+            $gateway = ucfirst($name);
         }
-        throw new Exception("gateway [{$name}] not exist");
+
+        return $gateway;
     }
 
 
-    public function make($gateway, $name, $version = '')
+    /**
+     * @param string $name
+     * @return mixed
+     * @throws Exception
+     */
+    public function gateway($name = "")
     {
-        $this->gateway = new $gateway($name, $version, $this);
+        $gateway = __NAMESPACE__ . '\\Gateways\\' . $this->getName($name);
+        if (class_exists($gateway)) {
+            return self::make($gateway);
+        }
+        throw new Exception("gateway [{$name}] not exist");
+    }
+    
+    public function make($gateway)
+    {
+        $this->gateway = new $gateway($this);
         return $this->gateway;
     }
 

@@ -7,15 +7,20 @@
  */
 
 
-namespace Crisen\AI\Drivers\Baidu;
+namespace Crisen\AI\Drivers\Baidu\Gateways;
 
 
-use Crisen\AI\Contracts\GatewayInterface;
 
-class Nlp implements GatewayInterface
+class Nlp extends AbstractBaiduGateway
 {
-    public function getName()
+    public function resourcePath(): array
     {
-        return 'nlp';
+        // TODO: Implement resourcePath() method.
+    }
+
+
+    public function send($action, $data = [])
+    {
+        // TODO: Implement send() method.
     }
 }

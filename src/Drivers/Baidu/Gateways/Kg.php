@@ -10,15 +10,19 @@
 namespace Crisen\AI\Drivers\Baidu\Gateways;
 
 
-use Crisen\AI\Contracts\GatewayInterface;
-
-
-class Kg implements GatewayInterface
+class Kg extends AbstractBaiduGateway
 {
 
 
-    public function getName()
+    public function resourcePath(): array
     {
-        return 'kg';
+        // TODO: Implement resourcePath() method.
     }
+
+
+    public function send($action, $data = [])
+    {
+        // TODO: Implement send() method.
+    }
+
 }

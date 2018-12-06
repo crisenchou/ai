@@ -9,8 +9,6 @@
 namespace Crisen\AI\Drivers\Baidu\Gateways;
 
 
-use Crisen\AI\Client;
-use Crisen\AI\Contracts\DriverInterface;
 use Crisen\AI\Drivers\Baidu\Baidu;
 
 
@@ -22,111 +20,42 @@ abstract class AbstractBaiduGateway
     public $client;
 
     protected $baseUrl = "https://aip.baidubce.com";
-    protected $uri = 'rest';// options  rest | rpc
-    protected $uriVersion = '2.0';
-    protected $gateway;
-    protected $gatewayVersion;
-    protected $action;
-
-    protected $image;
-    protected $imageType;
 
 
-    public function __construct($name, $version, Baidu $driver)
+    public function __construct(Baidu $driver)
     {
-        $this->gateway = $name;
-        $this->version = $version;
         $this->client = $driver->client;
         $this->accessToken = $driver->accessToken;
     }
 
 
-    public function uri($name, $version = '')
-    {
-        $this->uri = $name;
-        $version && $this->uriVersion = $version;
-    }
-
-
-    /**
-     * @param $path
-     * @return AbstractBaiduGateway
-     */
-    public function path($path)
-    {
-        $image = base64_encode(file_get_contents($path));
-        return $this->base64($image);
-    }
-
-
-    /**
-     * @param string $image
-     * @return AbstractBaiduGateway
-     */
-    public function url(string $image)
-    {
-        return $this->image($image, 'URL');
-    }
-
-    /**
-     * @param string $image
-     * @return AbstractBaiduGateway
-     */
-    public function base64(string $image)
-    {
-        return $this->image($image, 'BASE64');
-    }
-
-
-    /**
-     * @param string $image
-     * @return AbstractBaiduGateway
-     */
-    public function faceToken(string $image)
-    {
-        return $this->image($image, 'FACE_TOKEN');
-    }
-
-
-    /**
-     * @param string $image
-     * @param string $imageType
-     * @return $this
-     */
-    public function image(string $image, string $imageType = 'BASE64')
-    {
-        $this->image = $image;
-        $this->imageType = $imageType;
-        return $this;
-    }
-
-
     /**
      * @param $action
-     * @param array $options
-     * @return array
-     * @throws \Crisen\AI\Exceptions\Exception
+     * @return string
      */
-    public function send($action, array $options = [])
+    protected function buildUrl($action): string
     {
-        $data = array();
-        $data['image'] = $this->image;
-        $data['image_type'] = $this->imageType;
-        $data = array_merge($data, $options);
-
-        $params = [
-            $this->baseUrl,
-            $this->uri,
-            $this->uriVersion,
-            $this->gateway,
-            $this->version,
-            $action
-        ];
-
-        $url = implode('/', $params) . '?' . http_build_query(['access_token' => $this->accessToken]);
-        var_dump($url);
-        return $this->client->post($url, $data);
+        $params = [];
+        array_push($params, $this->baseUrl);
+        array_push($params, $this->resourcePath());
+        array_push($params, $action);
+        return implode('/', $params) . '?' . http_build_query(['access_token' => $this->accessToken]);
     }
+
+
+    /**
+     * 所有的路由都需要指定资源路径
+     * @return array
+     */
+    abstract public function resourcePath(): array;
+
+
+    abstract public function send($action, $data = []);
+//
+//    public function send($action, array $data = [])
+//    {
+//        return $this->client->post($this->buildUrl($action), $data);
+//    }
 
 
     public function __call($action, $arguments)

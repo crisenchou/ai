@@ -9,13 +9,23 @@
 
 namespace Crisen\AI\Drivers\Baidu\Gateways;
 
-use Crisen\AI\Contracts\GatewayInterface;
 
-class ImageClassify implements GatewayInterface
+class ImageClassify extends AbstractBaiduGateway
 {
 
-    public function getName()
+
+    public function resourcePath(): array
     {
-        return 'image-classify';
+        return [
+            'rest', '2.0', 'image-classify', 'v1'
+        ];
     }
+
+
+    public function send($action, $data = [])
+    {
+        // TODO: Implement send() method.
+    }
+    
+
 }

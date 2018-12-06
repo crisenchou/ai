@@ -7,7 +7,6 @@
  */
 
 
-
 namespace Crisen\AI\Tests\Baidu;
 
 
@@ -18,16 +17,45 @@ use Crisen\AI\Tests\BaseTest;
 class FaceTest extends BaseTest
 {
 
-    public function testFace()
+    protected $gateway;
+
+    public function __construct(string $name = null, array $data = [], string $dataName = '')
     {
-        $ai = new AI($this->config);
-        $gateway = $ai->gateway('face');
-        $this->assertInstanceOf(GatewayTest::class, $gateway);
-        $data = $ai->gateway('face')->url('www.crisen.org/favicon.ico')->detect();
-        var_dump($data);
-        $data = $ai->gateway('face', 'v2')->url('www.crisen.org/favicon.ico')->detect();
-        var_dump($data);
-        $data = $ai->gateway('imageSearch')->url('www.crisen.org/favicon.ico')->detect();
-        var_dump($data);
+        parent::__construct($name, $data, $dataName);
+        $this->gateway = (new AI($this->config))->gateway('face');
+    }
+
+
+    public function testGateway()
+    {
+        $this->assertInstanceOf(GatewayTest::class, $this->gateway);
+    }
+
+    public function testDetect()
+    {
+
+        $response = $this->gateway->url($this->imageUrl())->detect();
+        $this->assertSuccess($response);
+    }
+
+
+    public function testMatch()
+    {
+        $response = $this->gateway->url($this->imageUrl())->match();
+        $this->assertSuccess($response);
+    }
+
+
+    public function testSearch()
+    {
+        $response = $this->gateway->url($this->imageUrl())->search([
+            'group_id_list' => '1'
+        ]);
+        $this->assertSuccess($response);
+    }
+
+    private function imageUrl()
+    {
+        return 'https://aip.bdstatic.com/portal/dist/1543490900641/ai_images/logo.png';
     }
 }
