@@ -18,11 +18,6 @@ class Kg extends AbstractBaiduGateway
     {
         // TODO: Implement resourcePath() method.
     }
-
-
-    public function send($action, $data = [])
-    {
-        // TODO: Implement send() method.
-    }
+    
 
 }

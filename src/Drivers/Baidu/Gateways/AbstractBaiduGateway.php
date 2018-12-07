@@ -10,14 +10,18 @@ namespace Crisen\AI\Drivers\Baidu\Gateways;
 
 
 use Crisen\AI\Drivers\Baidu\Baidu;
+use Crisen\AI\Exceptions\Exception;
 
 
 abstract class AbstractBaiduGateway
 {
 
     protected $driver;
-    public $accessToken;
-    public $client;
+    protected $accessToken;
+    protected $client;
+    protected $params = [];
+    protected $headers = [];
+
 
     protected $baseUrl = "https://aip.baidubce.com";
 
@@ -25,21 +29,100 @@ abstract class AbstractBaiduGateway
     public function __construct(Baidu $driver)
     {
         $this->client = $driver->client;
+        $this->client->setHeaders($this->headers());
         $this->accessToken = $driver->accessToken;
     }
 
 
     /**
-     * @param $action
-     * @return string
+     * @return array
      */
-    protected function buildUrl($action): string
+    public function headers()
     {
-        $params = [];
-        array_push($params, $this->baseUrl);
-        array_push($params, $this->resourcePath());
-        array_push($params, $action);
-        return implode('/', $params) . '?' . http_build_query(['access_token' => $this->accessToken]);
+        return [
+            'content-type' => 'application/json'
+        ];
+    }
+
+
+    /**
+     * @param $path
+     * @return $this
+     */
+    public function path($path)
+    {
+        $image = base64_encode(file_get_contents($path));
+        return $this->base64($image);
+    }
+
+
+    /**
+     * @param string $image
+     * @return $this
+     */
+    public function url(string $image)
+    {
+        return $this->image($image, 'URL');
+    }
+
+    /**
+     * @param string $image
+     * @return $this
+     */
+    public function base64(string $image)
+    {
+        return $this->image($image, 'BASE64');
+    }
+
+
+    /**
+     * @param string $image
+     * @return $this
+     */
+    public function faceToken(string $image)
+    {
+        return $this->image($image, 'FACE_TOKEN');
+    }
+
+
+    /**
+     * @param $action
+     * @param array $options
+     * @return mixed
+     * @throws Exception
+     */
+    public function send($action, $options = [])
+    {
+        $data = array_merge($this->params, $options);
+        $response = $this->client->post($this->buildUrl($action), $data);
+        return $this->response($response);
+    }
+
+
+    /**
+     * @param array $res
+     * @return mixed
+     * @throws Exception
+     */
+    public function response($res = [])
+    {
+        if (!is_array($res)) {
+            throw new Exception('接口请求错误');
+        }
+        return json_decode($res['content'], true);
+    }
+
+
+    /**
+     * @param string $image
+     * @param string $imageType
+     * @return $this
+     */
+    public function image(string $image, string $imageType = 'BASE64')
+    {
+        $this->params['image'] = $image;
+        $this->params['image_type'] = $imageType;
+        return $this;
     }
 
 
@@ -50,14 +133,26 @@ abstract class AbstractBaiduGateway
     abstract public function resourcePath(): array;
 
 
-    abstract public function send($action, $data = []);
-//
-//    public function send($action, array $data = [])
-//    {
-//        return $this->client->post($this->buildUrl($action), $data);
-//    }
+    /**
+     * @param $action
+     * @return string
+     */
+    protected function buildUrl($action): string
+    {
+        $uri = [];
+        array_push($uri, $this->baseUrl);
+        array_push($uri, $this->resourcePath());
+        array_push($uri, $action);
+        return implode('/', $uri) . '?' . http_build_query(['access_token' => $this->accessToken]);
+    }
 
 
+    /**
+     * @param $action
+     * @param $arguments
+     * @return mixed
+     * @throws Exception
+     */
     public function __call($action, $arguments)
     {
         return $this->send($action, ...$arguments);

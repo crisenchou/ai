@@ -21,9 +21,5 @@ class ImageSearch extends AbstractBaiduGateway
         ];
     }
 
-
-    public function send($action, $data = [])
-    {
-        // TODO: Implement send() method.
-    }
+    
 }

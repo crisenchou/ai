@@ -10,17 +10,12 @@
 namespace Crisen\AI\Tests\Baidu;
 
 
-use Crisen\AI\AI;
-use Crisen\AI\Tests\BaseTest;
-
 class AuthTest extends BaseTest
 {
 
     public function testGetAccessToken()
     {
-        $ai = new AI($this->config);
-        $driver = $ai->driver;
-        $this->assertNotEmpty($driver->accessToken);
+        $this->assertNotEmpty($this->driver->accessToken);
     }
 
 }

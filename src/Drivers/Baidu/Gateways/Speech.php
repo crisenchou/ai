@@ -23,11 +23,5 @@ class Speech extends AbstractBaiduGateway
             'rest', '2.0', 'image-classify', 'v3'
         ];
     }
-
-
-    public function send($action, $data = [])
-    {
-        // TODO: Implement send() method.
-    }
-
+    
 }

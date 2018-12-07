@@ -10,8 +10,6 @@
 namespace Crisen\AI\Drivers\Baidu\Gateways;
 
 
-use mysql_xdevapi\Exception;
-
 class Face extends AbstractBaiduGateway
 {
 
@@ -27,73 +25,6 @@ class Face extends AbstractBaiduGateway
         return [
             'rest', '2.0', 'face', 'v3'
         ];
-    }
-
-
-    public function send($action, $options = [])
-    {
-        $data = [];
-        $data['image'] = $this->image;
-        $data['image_type'] = $this->imageType;
-        $data = array_merge($data, $options);
-        $response = $this->client->post($this->buildUrl($action), $data);
-        if (!is_array($response)) {
-            throw new Exception('接口请求错误');
-        }
-        return json_decode($response['content'], true);
-    }
-
-
-    /**
-     * @param $path
-     * @return AbstractBaiduGateway
-     */
-    public function path($path)
-    {
-        $image = base64_encode(file_get_contents($path));
-        return $this->base64($image);
-    }
-
-
-    /**
-     * @param string $image
-     * @return AbstractBaiduGateway
-     */
-    public function url(string $image)
-    {
-        return $this->image($image, 'URL');
-    }
-
-    /**
-     * @param string $image
-     * @return AbstractBaiduGateway
-     */
-    public function base64(string $image)
-    {
-        return $this->image($image, 'BASE64');
-    }
-
-
-    /**
-     * @param string $image
-     * @return AbstractBaiduGateway
-     */
-    public function faceToken(string $image)
-    {
-        return $this->image($image, 'FACE_TOKEN');
-    }
-
-
-    /**
-     * @param string $image
-     * @param string $imageType
-     * @return $this
-     */
-    public function image(string $image, string $imageType = 'BASE64')
-    {
-        $this->image = $image;
-        $this->imageType = $imageType;
-        return $this;
     }
 
 
@@ -122,7 +53,8 @@ class Face extends AbstractBaiduGateway
 
     /**
      * @param array $options
-     * @return array
+     * @return mixed
+     * @throws \Crisen\AI\Exceptions\Exception
      */
     public function search($options = [])
     {

@@ -2,7 +2,7 @@
 /**
  * author: crisen
  * email: crisen@crisen.org
- * date: 18-12-5
+ * date: 18-12-7
  * description:
  */
 
@@ -10,23 +10,17 @@
 namespace Crisen\AI\Tests\Baidu;
 
 
-use Crisen\AI\AI;
-use Crisen\AI\Tests\BaseTest;
-
-
-class GatewayTest extends BaseTest
+abstract class GatewayTest extends BaseTest
 {
-    
-    public function testFace()
+    protected $gateway;
+
+
+    public function __construct(string $name = null, array $data = [], string $dataName = '')
     {
-        $ai = new AI($this->config);
-        $gateway = $ai->gateway('face');
-        $this->assertInstanceOf(GatewayTest::class, $gateway);
-        $data = $ai->gateway('face')->url('www.crisen.org/favicon.ico')->detect();
-        var_dump($data);
-        $data = $ai->gateway('face', 'v2')->url('www.crisen.org/favicon.ico')->detect();
-        var_dump($data);
-        $data = $ai->gateway('imageSearch')->url('www.crisen.org/favicon.ico')->detect();
-        var_dump($data);
+        parent::__construct($name, $data, $dataName);
+        $this->gateway = $this->driver->gateway($this->gateway());
     }
+
+
+    abstract protected function gateway();
 }

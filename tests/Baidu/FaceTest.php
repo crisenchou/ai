@@ -10,21 +10,13 @@
 namespace Crisen\AI\Tests\Baidu;
 
 
-use Crisen\AI\AI;
-use Crisen\AI\Tests\BaseTest;
-
-
-class FaceTest extends BaseTest
+class FaceTest extends GatewayTest
 {
 
-    protected $gateway;
-
-    public function __construct(string $name = null, array $data = [], string $dataName = '')
+    public function gateway()
     {
-        parent::__construct($name, $data, $dataName);
-        $this->gateway = (new AI($this->config))->gateway('face');
+        return 'face';
     }
-
 
     public function testGateway()
     {

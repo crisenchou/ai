@@ -25,24 +25,13 @@ class FacesetGroup extends AbstractBaiduGateway
         ];
     }
 
-
-    public function send($action, $options = [])
-    {
-        $data = [];
-        $data['image'] = $this->image;
-        $data['image_type'] = $this->imageType;
-        $data = array_merge($data, $options);
-        return $this->client->post($this->buildUrl($action), $data);
-    }
-
-
     /**
      * 用户组管理
      * @param array $options
      * @return array
      * @throws \Crisen\AI\Exceptions\Exception
      */
-    public function groupAdd($options = [])
+    public function add($options = [])
     {
         return $this->send('add', $options);
     }
@@ -53,7 +42,7 @@ class FacesetGroup extends AbstractBaiduGateway
      * @return array
      * @throws \Crisen\AI\Exceptions\Exception
      */
-    public function groupDelete($options = [])
+    public function delete($options = [])
     {
         return $this->send('delete', $options);
     }
@@ -65,7 +54,7 @@ class FacesetGroup extends AbstractBaiduGateway
      * @return array
      * @throws \Crisen\AI\Exceptions\Exception
      */
-    public function groupList($options = [])
+    public function get($options = [])
     {
         return $this->send('getlist', $options);
     }

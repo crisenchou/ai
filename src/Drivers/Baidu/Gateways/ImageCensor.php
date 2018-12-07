@@ -22,12 +22,7 @@ class ImageCensor extends AbstractBaiduGateway
             'rest', '2.0', 'antiporn', 'v1'
         ];
     }
-
-
-    public function send($action, $data = [])
-    {
-        // TODO: Implement send() method.
-    }
+    
 
     /**
      * @param array $options

@@ -26,18 +26,6 @@ class FacesetUser extends AbstractBaiduGateway
         ];
     }
 
-
-    public function send($action, $options = [])
-    {
-        $data = [];
-        $data['image'] = $this->image;
-        $data['image_type'] = $this->imageType;
-        $data = array_merge($data, $options);
-        return $this->client->post($this->buildUrl($action), $data);
-    }
-
-
-
     /**
      * 人脸注册
      * @param array $options
@@ -46,7 +34,7 @@ class FacesetUser extends AbstractBaiduGateway
      */
     public function add($options = [])
     {
-        return $this->send('faceset/user/add', $options);
+        return $this->send('add', $options);
     }
 
 
@@ -58,9 +46,8 @@ class FacesetUser extends AbstractBaiduGateway
      */
     public function update($options = [])
     {
-        return $this->send('faceset/user/update', $options);
+        return $this->send('update', $options);
     }
-
 
 
     /**

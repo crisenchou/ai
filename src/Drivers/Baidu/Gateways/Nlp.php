@@ -10,7 +10,6 @@
 namespace Crisen\AI\Drivers\Baidu\Gateways;
 
 
-
 class Nlp extends AbstractBaiduGateway
 {
     public function resourcePath(): array
@@ -19,8 +18,4 @@ class Nlp extends AbstractBaiduGateway
     }
 
 
-    public function send($action, $data = [])
-    {
-        // TODO: Implement send() method.
-    }
 }

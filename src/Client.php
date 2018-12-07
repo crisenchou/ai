@@ -13,6 +13,12 @@ use Crisen\AI\Exceptions\Exception;
 
 class Client
 {
+
+    protected $headers = [];
+    protected $connectTimeout = 60000;
+    protected $socketTimeout = 60000;
+    protected $conf = [];
+
     /**
      * HttpClient
      * @param array $headers HTTP header
@@ -20,9 +26,12 @@ class Client
     public function __construct($headers = array())
     {
         $this->headers = $this->buildHeaders($headers);
-        $this->connectTimeout = 60000;
-        $this->socketTimeout = 60000;
-        $this->conf = array();
+    }
+
+
+    public function setHeaders($headers = array())
+    {
+        $this->headers = $this->buildHeaders($headers);
     }
 
     /**
