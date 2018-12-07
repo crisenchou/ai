@@ -17,18 +17,17 @@ abstract class BaseTest extends TestCase
 
 
     protected $driver;
-
-    public $config = [
-        'app_id' => '15080677',
-        'api_key' => 'DAUSqdCmoayLIRm9bKKAtb4v',
-        'secret_key' => 'jiMPUuBSkvgGWHWupu3pxsENIOgx47bx'
-    ];
-
-
+    
     public function __construct(string $name = null, array $data = [], string $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
-        $this->driver = (new AI($this->config))->driver('baidu');
+        $default = require dirname(__DIR__) . '/config/config.php';
+        $env = require dirname(__DIR__) . '/config/env.php';
+        $config = $default['baidu'];
+        if (is_array($env)) {
+            $config = array_merge($default['baidu'], $env['baidu']);
+        }
+        $this->driver = (new AI($config))->driver('baidu');
     }
 
     public function assertSuccess($response)

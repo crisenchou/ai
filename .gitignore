@@ -1,3 +1,4 @@
 composer.lock
 .idea
 vendor
+tests/config/env.php
