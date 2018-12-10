@@ -3,10 +3,11 @@
 ## 特点
 
 - 优雅的调用方式
-- 保留了了原本的接口一直的参数
+- 仅支持php 7.0以上版本
+- 保留了原本的接口一致的参数
 - 隐藏了开发者不需要关注的细节
 - 高度抽象的类
-- psr标准
+- 符合psr标准
 
 ## 支持的平台
 
@@ -15,7 +16,7 @@
 ## 安装
 
 ~~~
-composer require  crisen/ai
+composer require  "crisen/ai":"dev-master"
 ~~~
 
 ## 使用演示

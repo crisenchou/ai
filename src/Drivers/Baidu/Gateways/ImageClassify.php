@@ -21,6 +21,12 @@ class ImageClassify extends AbstractBaiduGateway
         ];
     }
 
-    
+//    public function headers()
+//    {
+//        return [
+//            'Content-Type' => 'application/json'
+//        ];
+//    }
+
 
 }

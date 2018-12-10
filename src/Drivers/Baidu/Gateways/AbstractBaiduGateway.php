@@ -40,7 +40,7 @@ abstract class AbstractBaiduGateway
     public function headers()
     {
         return [
-            'content-type' => 'application/json'
+            'Content-Type' => 'application/json'
         ];
     }
 
