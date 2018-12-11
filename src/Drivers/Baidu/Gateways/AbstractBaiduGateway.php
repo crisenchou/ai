@@ -141,7 +141,7 @@ abstract class AbstractBaiduGateway
     {
         $uri = [];
         array_push($uri, $this->baseUrl);
-        array_push($uri, $this->resourcePath());
+        $uri = array_merge($uri, $this->resourcePath());
         array_push($uri, $action);
         return implode('/', $uri) . '?' . http_build_query(['access_token' => $this->accessToken]);
     }
