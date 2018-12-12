@@ -21,7 +21,7 @@
 composer require  "crisen/ai":"dev-master"
 ~~~
 
-
+laravel框架使用请移步[这里](https://github.com/crisenchou/laravel-ai)
 
 ## 使用演示
 
@@ -29,12 +29,14 @@ composer require  "crisen/ai":"dev-master"
 use Crisen\AI\AI;
 
 ...
-    
-$res = AI::driver('baidu')
-			->gateway('face')
-			->url('http://aip.bdstatic.com/portal/dist/1543924308745/ai_images/logo.png')
-			->detect();
 
+
+// 图片检索
+$res = AI::driver('baidu')
+	->gateway('face')
+	->url('http://aip.bdstatic.com/portal/dist/1543924308745/ai_images/logo.png')
+	->detect();
+	
 if($res->success()){
     var_dump($res->toArray())
 }else{

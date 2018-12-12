@@ -26,7 +26,7 @@ class BaiduResponse implements ResponseInterface
 
     public function __get($name)
     {
-        if (array_key_exists($this->data, $name)) {
+        if (array_key_exists($name, $this->data)) {
             return $this->data[$name];
         }
         throw new Exception('property not exist');
@@ -40,7 +40,7 @@ class BaiduResponse implements ResponseInterface
         return false;
     }
 
-    public function gerErrMessage()
+    public function getErrMessage()
     {
         if (!$this->success()) {
             return $this->data['error_msg'];

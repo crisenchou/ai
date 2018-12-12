@@ -39,7 +39,6 @@ class AI
         return $this->driver;
     }
 
-
     /**
      * @param $name
      * @param $arguments
