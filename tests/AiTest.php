@@ -12,18 +12,18 @@ namespace Crisen\AI\Tests;
 
 use Crisen\AI\AI;
 use Crisen\AI\Contracts\DriverInterface;
-use Crisen\AI\Contracts\GatewayInterface;
 
 
-class AITest extends BaseTest
+class AITest extends TestCase
 {
-
 
     public function testDriver()
     {
-        $ai = new AI($this->config);
+
+        $default = require __DIR__ . '/config/config.php';
+        $config = $default['baidu'];
+        $ai = new AI($config);
         $this->assertInstanceOf(AI::class, $ai);
-        $this->assertInstanceOf(DriverInterface::class, $ai->driver);
     }
 
 }

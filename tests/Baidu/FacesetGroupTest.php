@@ -16,21 +16,20 @@ class FacesetGroupTest extends GatewayTest
     {
         return 'faceset.group';
     }
-
-
+    
     public function testGet()
     {
-        $this->gateway->get();
+        $this->assertSuccess($this->gateway->get());
     }
 
     public function testAdd()
     {
-        $this->gateway->add();
+        $this->assertSuccess($this->gateway->add());
     }
 
 
     public function testDelete()
     {
-        $this->gateway->delete();
+        $this->assertSuccess($this->gateway->delete());
     }
 }
