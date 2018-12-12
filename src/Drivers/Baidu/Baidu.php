@@ -15,8 +15,7 @@ use Crisen\AI\Exceptions\Exception;
 
 class Baidu implements DriverInterface
 {
-
-    public $gateway;
+    protected $gateway;
     protected $appId;
     protected $apiKey;
     protected $secretKey;
@@ -35,7 +34,6 @@ class Baidu implements DriverInterface
         $this->appId = $config['app_id'];
         $this->apiKey = $config['api_key'];
         $this->secretKey = $config['secret_key'];
-        $this->getAccessToken();
     }
 
 
@@ -81,7 +79,6 @@ class Baidu implements DriverInterface
         } else {
             $gateway = ucfirst($name);
         }
-
         return $gateway;
     }
 
@@ -99,15 +96,29 @@ class Baidu implements DriverInterface
         }
         throw new Exception("gateway [{$name}] not exist");
     }
-    
+
+
+    /**
+     * @param $gateway
+     * @return mixed
+     * @throws Exception
+     */
     public function make($gateway)
     {
+        $this->getAccessToken();
         $this->gateway = new $gateway($this);
         return $this->gateway;
     }
 
+    /**
+     * @param $name
+     * @param $arguments
+     * @return mixed
+     * @throws Exception
+     */
     public function __call($name, $arguments)
     {
-        $this->gateway->$name(...$arguments);
+        $name = $this->getName($name);
+        return $this->gateway($name);
     }
 }

@@ -9,6 +9,8 @@
 
 namespace Crisen\AI\Tests\Baidu;
 
+use Crisen\AI\Drivers\Baidu\Gateways\AbstractBaiduGateway;
+
 class FacesetTest extends GatewayTest
 {
     protected function gateway()
@@ -35,4 +37,11 @@ class FacesetTest extends GatewayTest
         $res = $this->gateway->delete();
         $this->assertSuccess($res);
     }
+
+    public function testStaticGateway()
+    {
+        $face = $this->driver->face();
+        $this->assertInstanceOf(AbstractBaiduGateway::class, $face);
+    }
+
 }

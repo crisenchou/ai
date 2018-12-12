@@ -19,11 +19,12 @@ class AITest extends TestCase
 
     public function testDriver()
     {
-
         $default = require __DIR__ . '/config/config.php';
         $config = $default['baidu'];
         $ai = new AI($config);
         $this->assertInstanceOf(AI::class, $ai);
+        $ai = AI::baidu($config);
+        $this->assertInstanceOf(DriverInterface::class, $ai);
     }
 
 }

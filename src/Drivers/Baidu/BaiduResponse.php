@@ -18,12 +18,17 @@ class BaiduResponse implements ResponseInterface
 
     protected $data;
 
-    public function __construct(array $data)
+    public function __construct(array $data = [])
     {
         $this->data = $data;
     }
 
 
+    /**
+     * @param $name
+     * @return mixed
+     * @throws Exception
+     */
     public function __get($name)
     {
         if (array_key_exists($name, $this->data)) {
@@ -32,6 +37,10 @@ class BaiduResponse implements ResponseInterface
         throw new Exception('property not exist');
     }
 
+
+    /**
+     * @return bool
+     */
     public function success()
     {
         if ($this->data['error_code'] == 0) {
@@ -40,13 +49,21 @@ class BaiduResponse implements ResponseInterface
         return false;
     }
 
-    public function getErrMessage()
+
+    /**
+     * @return mixed|string
+     */
+    public function getErrMsg()
     {
         if (!$this->success()) {
             return $this->data['error_msg'];
         }
     }
 
+
+    /**
+     * @return array
+     */
     public function toArray()
     {
         return $this->data;

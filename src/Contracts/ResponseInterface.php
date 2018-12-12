@@ -21,7 +21,7 @@ interface  ResponseInterface
     /**
      * @return string
      */
-    public function getErrMessage();
+    public function getErrMsg();
 
 
 }

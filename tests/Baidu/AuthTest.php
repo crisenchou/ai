@@ -15,7 +15,7 @@ class AuthTest extends BaseTest
 
     public function testGetAccessToken()
     {
+        $this->driver->getAccessToken();
         $this->assertNotEmpty($this->driver->accessToken);
     }
-
 }

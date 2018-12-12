@@ -31,28 +31,31 @@ class AI
 
     /**
      * @param $name
+     * @param array $config
      * @return mixed
+     * @throws Exception
      */
-    public function driver($name)
+    public function driver($name, $config = [])
     {
-        $this->driver = DriverFactory::make($name, $this->config);
+
+        if (!$config) {
+            $config = $this->config;
+        }
+        $this->driver = DriverFactory::make($name, $config);
         return $this->driver;
     }
 
+
     /**
-     * @param $name
+     * @param $method
      * @param $arguments
      * @return mixed
      * @throws Exception
      */
-    public function __call($name, $arguments)
+    public static function __callStatic($method, $arguments)
     {
-
-        if (!$this->driver) {
-            throw new Exception('driver not exist');
-        }
-
-        return $this->driver->$name(...$arguments);
+        $app = new self(...$arguments);
+        return $app->driver($method);
     }
 
 
