@@ -7,17 +7,21 @@
 - 保留了原本的接口一致的参数
 - 隐藏了开发者不需要关注的细节
 - 高度抽象的类
-- 符合psr标准
+- psr标准 方便集成
 
 ## 支持的平台
 
 - 百度AI平台
+
+
 
 ## 安装
 
 ~~~
 composer require  "crisen/ai":"dev-master"
 ~~~
+
+
 
 ## 使用演示
 
@@ -26,13 +30,22 @@ use Crisen\AI\AI;
 
 ...
     
-$response = AI::driver('baidu')
+$res = AI::driver('baidu')
 			->gateway('face')
 			->url('http://aip.bdstatic.com/portal/dist/1543924308745/ai_images/logo.png')
 			->detect();
-var_dump($response);
+
+if($res->success()){
+    var_dump($res->toArray())
+}else{
+    var_dump($res->getErrMessage());
+}
 
 ~~~
 
 
+
+## LICENSE
+
+[MIT](LICENSE)
 
