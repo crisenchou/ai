@@ -10,6 +10,8 @@
 namespace Crisen\AI\Tests\Baidu;
 
 
+use Crisen\AI\Drivers\Baidu\Gateways\AbstractBaiduGateway;
+
 class FaceTest extends GatewayTest
 {
 
@@ -20,7 +22,7 @@ class FaceTest extends GatewayTest
 
     public function testGateway()
     {
-        $this->assertInstanceOf(GatewayTest::class, $this->gateway);
+        $this->assertInstanceOf(AbstractBaiduGateway::class, $this->gateway);
     }
 
     public function testDetect()

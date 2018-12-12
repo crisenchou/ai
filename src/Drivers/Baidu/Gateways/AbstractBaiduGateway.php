@@ -10,6 +10,7 @@ namespace Crisen\AI\Drivers\Baidu\Gateways;
 
 
 use Crisen\AI\Drivers\Baidu\Baidu;
+use Crisen\AI\Drivers\Baidu\BaiduResponse;
 use Crisen\AI\Exceptions\Exception;
 
 
@@ -109,7 +110,7 @@ abstract class AbstractBaiduGateway
         if (!is_array($res)) {
             throw new Exception('接口请求错误');
         }
-        return json_decode($res['content'], true);
+        return new BaiduResponse(json_decode($res['content'], true));
     }
 
 

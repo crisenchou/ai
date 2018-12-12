@@ -17,7 +17,7 @@ abstract class BaseTest extends TestCase
 
 
     protected $driver;
-    
+
     public function __construct(string $name = null, array $data = [], string $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
@@ -32,6 +32,6 @@ abstract class BaseTest extends TestCase
 
     public function assertSuccess($response)
     {
-        $this->assertArrayHasKey('code', $response);
+        $this->assertArrayHasKey('error_code', $response->toArray());
     }
 }
