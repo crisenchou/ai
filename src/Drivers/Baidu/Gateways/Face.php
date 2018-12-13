@@ -28,6 +28,17 @@ class Face extends AbstractBaiduGateway
     }
 
 
+
+    public function groupList($group)
+    {
+        $groupList = $group;
+        if(is_array($group)){
+            $groupList = implode(',',$group);
+        }
+        $this->params['group_id_list'] = $groupList;
+        return $this;
+    }
+
     /**
      * 人脸检测
      * @param array $options

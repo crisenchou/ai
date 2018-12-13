@@ -126,6 +126,26 @@ abstract class AbstractBaiduGateway
         return $this;
     }
 
+    /**
+     * @param string $group
+     * @return $this
+     */
+    public function group(string $group)
+    {
+        $this->params['group_id'] = $group;
+        return $this;
+    }
+
+
+    /**
+     * @param string $user
+     * @return $this
+     */
+    public function user(string $user)
+    {
+        $this->params['user_id'] = $user;
+        return $this;
+    }
 
     /**
      * 所有的路由都需要指定资源路径

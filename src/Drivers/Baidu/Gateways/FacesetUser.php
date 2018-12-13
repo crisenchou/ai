@@ -26,6 +26,20 @@ class FacesetUser extends AbstractBaiduGateway
         ];
     }
 
+
+    /**
+     * @param string $group
+     * @return AbstractBaiduGateway|void
+     */
+    public function group(string $group = '')
+    {
+        if (!$group) {
+            $group = '@ALL';
+        }
+        parent::group($group);
+    }
+
+
     /**
      * 人脸注册
      * @param array $options
@@ -51,14 +65,16 @@ class FacesetUser extends AbstractBaiduGateway
 
 
     /**
-     * 复制用户
-     * @param array $options
-     * @return array
+     * @param string $src
+     * @param string $dest
+     * @return mixed
      * @throws \Crisen\AI\Exceptions\Exception
      */
-    public function copy($options = [])
+    public function copy(string $src, string $dest)
     {
-        return $this->send('copy', $options);
+        $this->params['src_group_id'] = $src;
+        $this->params['dst_group_id'] = $dest;
+        return $this->send('copy');
     }
 
 
