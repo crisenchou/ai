@@ -32,7 +32,7 @@ class FacesetUserTest extends GatewayTest
 
     public function testCopy()
     {
-        $res = $this->gateway->copy();
+        $res = $this->gateway->copy('src','dest');
         $this->assertSuccess($res);
     }
 
