@@ -13,7 +13,7 @@ $ai = AI::baidu($config);
 
 ## 人脸注册
 
-人脸更新的路由为facesetUser()
+人脸注册的路由为facesetUser()
 
 ~~~
 // 注册url形式的图片
