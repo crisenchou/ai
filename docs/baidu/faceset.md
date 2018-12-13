@@ -133,7 +133,7 @@ if($res->success()){
 
 ~~~
 
-$res = $ai->facesetGroup()->group('some_group')->get();
+$res = $ai->facesetGroup()->group('some_group')->users();
 if($res->success()){
     var_dump($res->toArray());
 }

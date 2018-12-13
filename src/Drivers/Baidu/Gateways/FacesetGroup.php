@@ -59,4 +59,16 @@ class FacesetGroup extends AbstractBaiduGateway
         return $this->send('getlist', $options);
     }
 
+
+    /**
+     * 获取用户列表
+     * @param array $options
+     * @return array
+     * @throws \Crisen\AI\Exceptions\Exception
+     */
+    public function users($options = [])
+    {
+        return $this->send('getusers', $options);
+    }
+
 }
