@@ -84,7 +84,7 @@ $ai->facesetUser()
 $group = 'some_group';
 $user  = 'some_user';
 $faceToken = 'face_token'; // 人脸注册时 返回的图片唯一标志 是人脸删除的必选参数
-$res = $ai->faceset()->group()->user()->faceToken();
+$res = $ai->faceset()->group($group)->user($user)->faceToken();
 if($res->success()){
     //do something
 }
