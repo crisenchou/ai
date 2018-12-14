@@ -63,6 +63,7 @@ class Face extends AbstractBaiduGateway
 
 
     /**
+     * 1:n 搜索
      * @param array $options
      * @return mixed
      * @throws \Crisen\AI\Exceptions\Exception
@@ -70,6 +71,18 @@ class Face extends AbstractBaiduGateway
     public function search($options = [])
     {
         return $this->send('search', $options);
+    }
+
+
+    /**
+     * m:n 搜索
+     * @param $options
+     * @return mixed
+     * @throws \Crisen\AI\Exceptions\Exception
+     */
+    public function multiSearch($options = [])
+    {
+        return $this->send('multi-search', $options);
     }
 
 
