@@ -74,7 +74,7 @@ class BaiduResponse implements ResponseInterface
     public function toArray()
     {
         if (isset($this->data['result'])) {
-            $this->data['result'];
+            return $this->data['result'];
         }
         return $this->data;
     }
