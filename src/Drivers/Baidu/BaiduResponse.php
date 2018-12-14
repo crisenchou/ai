@@ -31,9 +31,16 @@ class BaiduResponse implements ResponseInterface
      */
     public function __get($name)
     {
+
+
         if (array_key_exists($name, $this->data)) {
             return $this->data[$name];
         }
+
+        if (array_key_exists($name, $this->data['result'])) {
+            return $this->data['result'][$name];
+        }
+
         throw new Exception('property not exist');
     }
 
@@ -66,6 +73,9 @@ class BaiduResponse implements ResponseInterface
      */
     public function toArray()
     {
+        if (isset($this->data['result'])) {
+            $this->data['result'];
+        }
         return $this->data;
     }
 
