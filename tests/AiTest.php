@@ -23,10 +23,8 @@ class AITest extends TestCase
         $config = $default['baidu'];
         $ai = new AI($config);
         $this->assertInstanceOf(AI::class, $ai);
-
         $ai = AI::baidu($config);
         $this->assertInstanceOf(DriverInterface::class, $ai);
-
         $config = $default['youtu'];
         $ai = AI::youtu($config);
         $this->assertInstanceOf(DriverInterface::class, $ai);

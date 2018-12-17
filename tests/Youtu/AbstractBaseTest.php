@@ -12,7 +12,7 @@ namespace Crisen\AI\Tests\Youtu;
 use Crisen\AI\AI;
 use Crisen\AI\Tests\TestCase;
 
-class AbstractBaseTest extends TestCase
+abstract class AbstractBaseTest extends TestCase
 {
 
 

@@ -110,6 +110,7 @@ class Baidu implements DriverInterface
         return $this->gateway;
     }
 
+    
     /**
      * @param $name
      * @param $arguments
@@ -118,6 +119,9 @@ class Baidu implements DriverInterface
      */
     public function __call($name, $arguments)
     {
+        if ($arguments) {
+            $name = $name . '.' . $arguments[0];
+        }
         $name = $this->getName($name);
         return $this->gateway($name);
     }

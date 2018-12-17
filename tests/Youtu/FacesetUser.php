@@ -17,4 +17,10 @@ class FacesetUser extends AbstractGatewayTest
     }
 
 
+
+    public function testAdd()
+    {
+        $this->assertTrue(true);
+    }
+
 }

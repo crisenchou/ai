@@ -16,4 +16,11 @@ class FaceTest extends AbstractGatewayTest
     {
         return 'face';
     }
+
+
+
+    public function testDetect()
+    {
+        $this->assertTrue(true);
+    }
 }

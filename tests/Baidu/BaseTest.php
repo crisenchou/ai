@@ -32,6 +32,6 @@ abstract class BaseTest extends TestCase
 
     public function assertSuccess($response)
     {
-        $this->assertArrayHasKey('error_code', $response->toArray());
+        $this->assertNotEmpty($response->toArray());
     }
 }

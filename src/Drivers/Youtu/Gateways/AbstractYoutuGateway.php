@@ -131,7 +131,7 @@ abstract class AbstractYoutuGateway
      * scope of sign
      * @return array
      */
-    protected function scope()
+    public function scope()
     {
         return [];
     }

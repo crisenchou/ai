@@ -139,6 +139,11 @@ class Ocr extends AbstractYoutuGateway implements ShouldSign
     // 护照识别  passport
 
 
+    /**
+     * @param array $options
+     * @return \Crisen\AI\Drivers\Youtu\YoutuResponse
+     * @throws \Crisen\AI\Exceptions\Exception
+     */
     public function worddetect(array $options)
     {
         return $this->send('worddetect', $options);

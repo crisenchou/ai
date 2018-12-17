@@ -16,4 +16,10 @@ class FacesetGroup extends AbstractGatewayTest
     {
         return 'faceset.group';
     }
+
+
+    public function testAdd()
+    {
+        $this->assertTrue(true);
+    }
 }

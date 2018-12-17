@@ -11,8 +11,18 @@ namespace Crisen\AI\Tests\Youtu;
 
 class FacesetTest extends AbstractGatewayTest
 {
+
+
     protected function gateway()
     {
         return 'faceset';
     }
+
+
+    public function testGet()
+    {
+        $this->assertTrue(true);
+    }
+
+
 }

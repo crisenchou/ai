@@ -26,7 +26,7 @@ class Face extends AbstractYoutuGateway
      * 需要签名的域
      * @return array
      */
-    protected function scope()
+    public function scope()
     {
         return ['multifaceidentify'];
     }

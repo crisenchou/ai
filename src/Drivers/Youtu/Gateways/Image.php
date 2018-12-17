@@ -20,27 +20,47 @@ class Image extends AbstractYoutuGateway implements ShouldSign
     }
 
 
-    // 模糊图片识别
+    /**
+     * 模糊图片识别
+     * @param array $options
+     * @return \Crisen\AI\Drivers\Youtu\YoutuResponse
+     * @throws \Crisen\AI\Exceptions\Exception
+     */
     public function fuzzy(array $options = [])
     {
         return $this->send('fuzzydetect', $options);
     }
 
 
-    //食物识别
+    /**
+     * 食物识别
+     * @param array $options
+     * @return \Crisen\AI\Drivers\Youtu\YoutuResponse
+     * @throws \Crisen\AI\Exceptions\Exception
+     */
     public function food(array $options = [])
     {
         return $this->send('fooddetect', $options);
     }
 
-    //图片标签识别
+    /**
+     * 图片标签识别
+     * @param array $options
+     * @return \Crisen\AI\Drivers\Youtu\YoutuResponse
+     * @throws \Crisen\AI\Exceptions\Exception
+     */
     public function tag(array $options = [])
     {
         return $this->send('imagetag', $options);
     }
 
 
-    //  色情图像识别
+    /**
+     * 色情图像识别
+     * @param array $options
+     * @return \Crisen\AI\Drivers\Youtu\YoutuResponse
+     * @throws \Crisen\AI\Exceptions\Exception
+     */
     public function porn(array $options = [])
     {
         return $this->send('imageporn', $options);

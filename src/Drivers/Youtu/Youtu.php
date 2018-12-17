@@ -32,7 +32,7 @@ class Youtu implements DriverInterface
         $this->appId = $config['app_id'];
         $this->secretId = $config['secret_id'];
         $this->secretKey = $config['secret_key'];
-        $this->userId = $config['userId'];
+        $this->userId = $config['qq'];
     }
 
 

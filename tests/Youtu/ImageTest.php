@@ -17,4 +17,34 @@ class ImageTest extends AbstractGatewayTest
         return 'image';
     }
 
+
+    public function testFuzzy()
+    {
+        $this->assertTrue(true);
+    }
+
+
+    public function testFood()
+    {
+        $this->assertTrue(true);
+    }
+
+    public function testTag()
+    {
+        $this->assertTrue(true);
+    }
+
+
+    public function testPorn()
+    {
+        $this->assertTrue(true);
+    }
+
+
+    public function testTerrorism()
+    {
+        $this->assertTrue(true);
+    }
+
+
 }

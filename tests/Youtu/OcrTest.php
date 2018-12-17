@@ -17,4 +17,10 @@ class OcrTest extends AbstractGatewayTest
     {
         return 'ocr';
     }
+
+
+    public function testGeneral()
+    {
+        $this->assertTrue(true);
+    }
 }
