@@ -13,4 +13,9 @@ return [
         'api_key' => 'your api key',
         'secret_key' => 'your secret key'
     ],
+    'youtu' => [
+        'app_id' => 'your appid',
+        'secret_id' => 'your secret id',
+        'secret_key' => 'your secret key'
+    ]
 ];
