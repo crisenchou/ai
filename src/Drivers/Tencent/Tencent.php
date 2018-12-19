@@ -6,14 +6,14 @@
  * description:
  */
 
-namespace Crisen\AI\Drivers\Youtu;
+namespace Crisen\AI\Drivers\Tencent;
 
 
 use Crisen\AI\Contracts\DriverInterface;
 use Crisen\AI\Exceptions\Exception;
 
 
-class Youtu implements DriverInterface
+class Tencent implements DriverInterface
 {
 
     protected $gateway;

@@ -6,12 +6,12 @@
  * description:
  */
 
-namespace Crisen\AI\Drivers\Youtu;
+namespace Crisen\AI\Drivers\Tencent;
 
 
 use Crisen\AI\Contracts\ResponseInterface;
 
-class YoutuResponse implements ResponseInterface
+class TencentResponse implements ResponseInterface
 {
 
 

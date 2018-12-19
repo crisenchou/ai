@@ -6,7 +6,7 @@
  * description:
  */
 
-namespace Crisen\AI\Drivers\Youtu\Gateways;
+namespace Crisen\AI\Drivers\Tencent\Gateways;
 
 
 class FacesetGroup extends AbstractYoutuGateway
@@ -14,7 +14,7 @@ class FacesetGroup extends AbstractYoutuGateway
 
     public function resourcePath(): array
     {
-        return ['api'];
+        return ['face'];
     }
 
 

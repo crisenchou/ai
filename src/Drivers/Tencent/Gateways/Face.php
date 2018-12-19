@@ -6,7 +6,7 @@
  * description:
  */
 
-namespace Crisen\AI\Drivers\Youtu\Gateways;
+namespace Crisen\AI\Drivers\Tencent\Gateways;
 
 
 class Face extends AbstractYoutuGateway
@@ -18,17 +18,7 @@ class Face extends AbstractYoutuGateway
      */
     protected function resourcePath(): array
     {
-        return ['api'];
-    }
-
-
-    /**
-     * 需要签名的域
-     * @return array
-     */
-    public function scope()
-    {
-        return ['multifaceidentify'];
+        return ['face'];
     }
 
     /**
@@ -39,7 +29,7 @@ class Face extends AbstractYoutuGateway
      */
     public function detect(array $options = [])
     {
-        return $this->send('detectface', $options);
+        return $this->send('face_detectface', $options);
     }
 
 
@@ -63,7 +53,7 @@ class Face extends AbstractYoutuGateway
      */
     public function compare(array $options = [])
     {
-        return $this->send('facecompare', $options);
+        return $this->send('face_facecompare', $options);
     }
 
 
@@ -80,14 +70,14 @@ class Face extends AbstractYoutuGateway
 
 
     /**
-     * 人脸检索
+     * 多人脸检测
      * @param array $options
      * @return mixed
      * @throws \Crisen\AI\Exceptions\Exception
      */
     public function search(array $options)
     {
-        return $this->send('multifaceidentify', $options);
+        return $this->send('face_detectmultiface', $options);
     }
 
 

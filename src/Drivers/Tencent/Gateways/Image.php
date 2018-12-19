@@ -6,7 +6,7 @@
  * description:
  */
 
-namespace Crisen\AI\Drivers\Youtu\Gateways;
+namespace Crisen\AI\Drivers\Tencent\Gateways;
 
 
 use Crisen\AI\Contracts\ShouldSign;
@@ -16,14 +16,14 @@ class Image extends AbstractYoutuGateway implements ShouldSign
 
     public function resourcePath(): array
     {
-        return ['imageapi'];
+        return ['image'];
     }
 
 
     /**
      * 模糊图片识别
      * @param array $options
-     * @return \Crisen\AI\Drivers\Youtu\YoutuResponse
+     * @return \Crisen\AI\Drivers\Tencent\TencentResponse
      * @throws \Crisen\AI\Exceptions\Exception
      */
     public function fuzzy(array $options = [])
@@ -35,7 +35,7 @@ class Image extends AbstractYoutuGateway implements ShouldSign
     /**
      * 食物识别
      * @param array $options
-     * @return \Crisen\AI\Drivers\Youtu\YoutuResponse
+     * @return \Crisen\AI\Drivers\Tencent\TencentResponse
      * @throws \Crisen\AI\Exceptions\Exception
      */
     public function food(array $options = [])
@@ -46,7 +46,7 @@ class Image extends AbstractYoutuGateway implements ShouldSign
     /**
      * 图片标签识别
      * @param array $options
-     * @return \Crisen\AI\Drivers\Youtu\YoutuResponse
+     * @return \Crisen\AI\Drivers\Tencent\TencentResponse
      * @throws \Crisen\AI\Exceptions\Exception
      */
     public function tag(array $options = [])
@@ -58,7 +58,7 @@ class Image extends AbstractYoutuGateway implements ShouldSign
     /**
      * 色情图像识别
      * @param array $options
-     * @return \Crisen\AI\Drivers\Youtu\YoutuResponse
+     * @return \Crisen\AI\Drivers\Tencent\TencentResponse
      * @throws \Crisen\AI\Exceptions\Exception
      */
     public function porn(array $options = [])

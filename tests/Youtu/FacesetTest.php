@@ -21,6 +21,11 @@ class FacesetTest extends AbstractGatewayTest
 
     public function testGet()
     {
+
+        $res = $this->gateway->get();
+
+        vae_dump($res);exit;
+
         $this->assertTrue(true);
     }
 

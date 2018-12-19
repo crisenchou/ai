@@ -6,26 +6,25 @@
  * description:
  */
 
-namespace Crisen\AI\Drivers\Youtu\Gateways;
+namespace Crisen\AI\Drivers\Tencent\Gateways;
 
 
 use Crisen\AI\Client;
 use Crisen\AI\Contracts\ShouldSign;
-use Crisen\AI\Drivers\Youtu\Youtu;
-use Crisen\AI\Drivers\Youtu\YoutuResponse;
+use Crisen\AI\Drivers\Tencent\Tencent;
+use Crisen\AI\Drivers\Tencent\TencentResponse;
 use Crisen\AI\Exceptions\Exception;
 
 abstract class AbstractYoutuGateway
 {
 
     protected $client;
-    protected $baseUrl = 'https://api.youtu.qq.com/youtu';
+    protected $baseUrl = 'https://api.ai.qq.com/fcgi-bin';
     protected $driver;
-    protected $host = 'api.youtu.qq.com';
     protected $params = [];
 
 
-    public function __construct(Youtu $driver)
+    public function __construct(Tencent $driver)
     {
         $this->client = new Client();
         $this->driver = $driver;
@@ -86,17 +85,17 @@ abstract class AbstractYoutuGateway
 
     /**
      * @param array $res
-     * @return YoutuResponse
+     * @return TencentResponse
      */
     public function response($res = [])
     {
-        return new YoutuResponse(json_decode($res['content'], true));
+        return new TencentResponse(json_decode($res['content'], true));
     }
 
     /**
      * @param $action
      * @param array $options
-     * @return YoutuResponse
+     * @return TencentResponse
      * @throws Exception
      */
     public function send($action, $options = [])
@@ -109,7 +108,15 @@ abstract class AbstractYoutuGateway
             }
         }
 
+
+        $url = $this->buildUrl($action);
+
+        //var_dump($url);exit;
+
         $response = $client->post($this->buildUrl($action), $data);
+
+        var_dump($response);exit;
+
         return $this->response($response);
     }
 
@@ -153,7 +160,7 @@ abstract class AbstractYoutuGateway
     /**
      * @param $action
      * @param $arguments
-     * @return YoutuResponse
+     * @return TencentResponse
      * @throws Exception
      */
     public function __call($action, $arguments)

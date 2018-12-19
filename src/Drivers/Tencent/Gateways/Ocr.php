@@ -6,7 +6,7 @@
  * description:
  */
 
-namespace Crisen\AI\Drivers\Youtu\Gateways;
+namespace Crisen\AI\Drivers\Tencent\Gateways;
 
 
 use Crisen\AI\Contracts\ShouldSign;
@@ -16,7 +16,7 @@ class Ocr extends AbstractYoutuGateway implements ShouldSign
 
     public function resourcePath(): array
     {
-        return ['ocrapi'];
+        return ['ocr'];
     }
 
     /**
@@ -141,7 +141,7 @@ class Ocr extends AbstractYoutuGateway implements ShouldSign
 
     /**
      * @param array $options
-     * @return \Crisen\AI\Drivers\Youtu\YoutuResponse
+     * @return \Crisen\AI\Drivers\Tencent\TencentResponse
      * @throws \Crisen\AI\Exceptions\Exception
      */
     public function worddetect(array $options)
