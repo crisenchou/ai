@@ -20,6 +20,5 @@
       "Crisen\\AI\\": "src/",
       "Crisen\\AI\\Tests\\": "tests/"
     }
-  },
-  "minimum-stability": "dev"
+  }
 }
