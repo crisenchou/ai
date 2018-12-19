@@ -6,7 +6,7 @@
  * description:
  */
 
-namespace Crisen\AI\Tests\Youtu;
+namespace Crisen\AI\Tests\Tencent;
 
 
 class ImageTest extends AbstractGatewayTest

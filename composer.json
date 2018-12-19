@@ -1,7 +1,13 @@
 {
   "name": "crisen/ai",
   "description": "优雅的ai客户端",
+  "keywords": ["baidu-ai", "tencent-ai", "ai client"],\,
+  "type": "library",
   "license": "MIT",
+  "support": {
+    "issues": "https://github.com/crisenchou/ai/issues",
+    "source": "https://github.com/crisenchou/ai"
+  },
   "authors": [
     {
       "name": "crisenchou",
@@ -17,8 +23,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Crisen\\AI\\": "src/",
-      "Crisen\\AI\\Tests\\": "tests/"
+      "Crisen\\AI\\": "src",
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Crisen\\AI\\Tests\\": "tests"
     }
   },
   "minimum-stability": "dev"

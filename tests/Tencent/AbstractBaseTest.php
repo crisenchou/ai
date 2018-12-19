@@ -6,7 +6,7 @@
  * description:
  */
 
-namespace Crisen\AI\Tests\Youtu;
+namespace Crisen\AI\Tests\Tencent;
 
 
 use Crisen\AI\AI;
@@ -23,11 +23,11 @@ abstract class AbstractBaseTest extends TestCase
         parent::__construct($name, $data, $dataName);
         $default = require dirname(__DIR__) . '/config/config.php';
         $env = require dirname(__DIR__) . '/config/env.php';
-        $config = $default['youtu'];
+        $config = $default['tencent'];
         if (is_array($env)) {
-            $config = array_merge($default['youtu'], $env['youtu']);
+            $config = array_merge($default['tencent'], $env['tencent']);
         }
-        $this->driver = AI::youtu($config);
+        $this->driver = AI::tencent($config);
     }
 
 

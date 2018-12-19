@@ -6,20 +6,19 @@
  * description:
  */
 
-namespace Crisen\AI\Tests\Youtu;
+namespace Crisen\AI\Tests\Tencent;
 
 
-class FaceTest extends AbstractGatewayTest
+class FacesetGroup extends AbstractGatewayTest
 {
 
     protected function gateway()
     {
-        return 'face';
+        return 'faceset.group';
     }
 
 
-
-    public function testDetect()
+    public function testAdd()
     {
         $this->assertTrue(true);
     }

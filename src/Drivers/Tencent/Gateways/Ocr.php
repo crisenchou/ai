@@ -9,9 +9,7 @@
 namespace Crisen\AI\Drivers\Tencent\Gateways;
 
 
-use Crisen\AI\Contracts\ShouldSign;
-
-class Ocr extends AbstractYoutuGateway implements ShouldSign
+class Ocr extends AbstractYoutuGateway
 {
 
     public function resourcePath(): array

@@ -18,10 +18,7 @@ class Tencent implements DriverInterface
 
     protected $gateway;
     protected $appId;
-    protected $secretId;
-    protected $secretKey;
-    protected $expired = 2592000;
-    protected $userId;
+    protected $appKey;
 
     /**
      * Youtu constructor.
@@ -30,9 +27,7 @@ class Tencent implements DriverInterface
     public function __construct(array $config)
     {
         $this->appId = $config['app_id'];
-        $this->secretId = $config['secret_id'];
-        $this->secretKey = $config['secret_key'];
-        $this->userId = $config['qq'];
+        $this->appKey = $config['app_key'];
     }
 
 
@@ -41,26 +36,21 @@ class Tencent implements DriverInterface
         return $this->appId;
     }
 
-    public function sign()
-    {
 
-        $now = time();
-        $rdm = rand();
-        $data = [
-            'a' => $this->appId,
-            'k' => $this->secretId,
-            'e' => $this->expired,
-            't' => $now,
-            'r' => $rdm,
-            'u' => $this->userId,
-        ];
-        $plainText = http_build_url($data);
-        $bin = hash_hmac("SHA1", $plainText, $this->secretKey, true);
-        $bin = $bin . $plainText;
-        $sign = base64_encode($bin);
+
+    public function sign($params)
+    {
+        ksort($params);
+        $str = '';
+        foreach ($params as $key => $value) {
+            if ($value !== '') {
+                $str .= $key . '=' . urlencode($value) . '&';
+            }
+        }
+        $str .= 'app_key=' . $this->appKey;
+        $sign = strtoupper(md5($str));
         return $sign;
     }
-
 
     /**
      * @param $name

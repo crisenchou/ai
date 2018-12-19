@@ -10,7 +10,6 @@ namespace Crisen\AI\Drivers\Tencent\Gateways;
 
 
 use Crisen\AI\Client;
-use Crisen\AI\Contracts\ShouldSign;
 use Crisen\AI\Drivers\Tencent\Tencent;
 use Crisen\AI\Drivers\Tencent\TencentResponse;
 use Crisen\AI\Exceptions\Exception;
@@ -28,7 +27,6 @@ abstract class AbstractYoutuGateway
     {
         $this->client = new Client();
         $this->driver = $driver;
-        $this->params['app_id'] = $driver->getAppId();
     }
 
     /**
@@ -100,62 +98,51 @@ abstract class AbstractYoutuGateway
      */
     public function send($action, $options = [])
     {
+        $this->setAppId();
+        $this->setTimeStamp();
+        $this->setNonceStr();
         $data = array_merge($this->params, $options);
-        $client = $this->client;
-        if ($this instanceof ShouldSign) {
-            if ($this->inScope($action)) {
-                $this->client->setHeaders($this->headers());
-            }
-        }
-
-
-        $url = $this->buildUrl($action);
-
-        //var_dump($url);exit;
-
-        $response = $client->post($this->buildUrl($action), $data);
-
-        var_dump($response);exit;
-
+        $data['sign'] = $this->sign($data);
+        $response = $this->client->post($this->buildUrl($action), $data);
         return $this->response($response);
     }
 
 
-    /**
-     * @param $action
-     * @return bool
-     */
-    private function inScope($action)
+    private function genNonceStr($length = 22)
     {
-        $scope = $this->scope();
-        if (!$scope) {
-            return true;
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        $str = "";
+        for ($i = 0; $i < $length; $i++) {
+            $str .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
         }
-        return in_array($action, $scope);
+        return $str;
     }
 
-    /**
-     * scope of sign
-     * @return array
-     */
-    public function scope()
+
+    private function setAppId()
     {
-        return [];
+        $this->params['app_id'] = $this->driver->getAppId();
     }
 
-
-    /**
-     * @return array
-     */
-    protected function headers()
+    private function setTimeStamp()
     {
-        return [
-            'Host' => $this->host,
-            'Content-Type' => 'text/json',
-            'Authorization' => $this->driver->sign(),
-        ];
+        $this->params['time_stamp'] = time();
     }
 
+    private function setNonceStr()
+    {
+        $this->params['nonce_str'] = $this->genNonceStr();
+    }
+
+    private function sign($data)
+    {
+//        $data = [
+//            'app_id' => $this->params['app_id'],
+//            'time_stamp' => $this->params['time_stamp'],
+//            'nonce_str' => $this->params['nonce_str'],
+//        ];
+        return $this->driver->sign($data);
+    }
 
     /**
      * @param $action

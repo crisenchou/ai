@@ -6,19 +6,20 @@
  * description:
  */
 
-namespace Crisen\AI\Tests\Youtu;
+namespace Crisen\AI\Tests\Tencent;
 
 
-class FacesetGroup extends AbstractGatewayTest
+class OcrTest extends AbstractGatewayTest
 {
+
 
     protected function gateway()
     {
-        return 'faceset.group';
+        return 'ocr';
     }
 
 
-    public function testAdd()
+    public function testGeneral()
     {
         $this->assertTrue(true);
     }

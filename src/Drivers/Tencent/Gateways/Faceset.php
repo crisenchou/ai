@@ -51,7 +51,7 @@ class Faceset extends AbstractYoutuGateway
      */
     public function get(array $options = [])
     {
-        return $this->send('getfaceinfo', $options);
+        return $this->send('face_getinfo', $options);
     }
 
 
