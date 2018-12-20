@@ -2,7 +2,7 @@
   "name": "crisen/ai",
   "description": "优雅的ai客户端",
   "keywords": ["baidu-ai", "tencent-ai", "ai client"],
-  "type": "library",
+  "type": "librarylibrary",
   "license": "MIT",
   "support": {
     "issues": "https://github.com/crisenchou/ai/issues",
