@@ -14,12 +14,12 @@
 ## 支持的平台
 
 - 百度AI平台
-- 腾讯AI平台
+- 腾讯AI平台(即将到来)
 
 ## 安装
 
 ~~~
-composer require  "crisen/ai":"dev-master"
+composer require  "crisen/ai":"^1.0.0"
 ~~~
 
 laravel框架使用请移步[这里](https://github.com/crisenchou/laravel-ai)
