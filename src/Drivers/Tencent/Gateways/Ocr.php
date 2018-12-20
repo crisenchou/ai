@@ -25,37 +25,19 @@ class Ocr extends AbstractYoutuGateway
      */
     public function general(array $options = [])
     {
-        return $this->send('generalocr', $options);
+        return $this->send('ocr_generalocr', $options);
     }
 
 
     /**
      * 手写文字识别 中文 英文
      * @param array $options
-     * @param int $english
      * @return mixed
      * @throws \Crisen\AI\Exceptions\Exception
      */
-    public function handwriting(array $options = [], $english = 0)
+    public function handwriting(array $options = [])
     {
-        $action = 'handwritingocr';
-
-        if ($english) {
-            $action = 'ehocr';
-        }
-        return $this->send($action, $options);
-    }
-
-
-    /**
-     * 英文手写文字识别
-     * @param array $options
-     * @return mixed
-     * @throws \Crisen\AI\Exceptions\Exception
-     */
-    public function eh(array $options = [])
-    {
-        return $this->handwriting($options, $english = 1);
+        return $this->send('ocr_handwritingocr', $options);
     }
 
     /**
@@ -66,18 +48,18 @@ class Ocr extends AbstractYoutuGateway
      */
     public function idcard(array $options = [])
     {
-        return $this->send('idcardocr', $options);
+        return $this->send('ocr_idcardocr', $options);
     }
 
     /**
-     * 文字识别
+     * 名片识别
      * @param array $options
      * @return mixed
      * @throws \Crisen\AI\Exceptions\Exception
      */
     public function bc(array $options = [])
     {
-        return $this->send('bcocr', $options);
+        return $this->send('ocr_bcocr', $options);
     }
 
 
@@ -89,7 +71,7 @@ class Ocr extends AbstractYoutuGateway
      */
     public function bizlicense(array $options = [])
     {
-        return $this->send('bizlicenseocr', $options);
+        return $this->send('ocr_bizlicenseocr', $options);
     }
 
 
@@ -101,7 +83,7 @@ class Ocr extends AbstractYoutuGateway
      */
     public function creditcard(array $options = [])
     {
-        return $this->send('creditcardocr', $options);
+        return $this->send('ocr_creditcardocr', $options);
     }
 
 
@@ -113,7 +95,7 @@ class Ocr extends AbstractYoutuGateway
      */
     public function plate(array $options = [])
     {
-        return $this->send('plateocr', $options);
+        return $this->send('ocr_plateocr', $options);
     }
 
 
@@ -125,17 +107,8 @@ class Ocr extends AbstractYoutuGateway
      */
     public function driverlicense(array $options = [])
     {
-        return $this->send('driverlicenseocr', $options);
+        return $this->send('ocr_driverlicenseocr', $options);
     }
-
-    // 其实上面的函数都可以使用语法糖来实现 但是为了方便理解 还是写了一点
-
-    //增值税发票识别 invoice
-
-    //车辆vin识别  vin
-
-    // 护照识别  passport
-
 
     /**
      * @param array $options
@@ -146,14 +119,6 @@ class Ocr extends AbstractYoutuGateway
     {
         return $this->send('worddetect', $options);
     }
-
-    //速算题目识别 arithmetic
-
-    //购车发票识别  structure
-
-    //金融票据识别 finan
-
-    //电子运单识别  waybill
 
 
 }

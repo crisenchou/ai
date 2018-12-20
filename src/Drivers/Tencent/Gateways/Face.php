@@ -34,6 +34,18 @@ class Face extends AbstractYoutuGateway
 
 
     /**
+     * 多人脸检测
+     * @param array $options
+     * @return \Crisen\AI\Drivers\Tencent\TencentResponse
+     * @throws \Crisen\AI\Exceptions\Exception
+     */
+    public function multiDetect($options = [])
+    {
+        return $this->send('face_detectmultiface', $options);
+
+    }
+
+    /**
      * 人脸关键点定位
      * @param array $options
      * @return mixed
@@ -41,12 +53,24 @@ class Face extends AbstractYoutuGateway
      */
     public function shape(array $options = [])
     {
-        return $this->send('faceshape', $options);
+        return $this->send('face_faceshape', $options);
     }
 
 
     /**
-     * 人脸对比
+     * 跨年龄人脸识别
+     * @param array $options
+     * @return mixed
+     * @throws \Crisen\AI\Exceptions\Exception
+     */
+    public function crossAge(array $options = [])
+    {
+        return $this->send('face_detectcrossageface', $options);
+    }
+
+
+    /**
+     * 跨年龄人脸识别
      * @param array $options
      * @return mixed
      * @throws \Crisen\AI\Exceptions\Exception
@@ -56,7 +80,6 @@ class Face extends AbstractYoutuGateway
         return $this->send('face_facecompare', $options);
     }
 
-
     /**
      * 人脸验证
      * @param array $options
@@ -65,19 +88,19 @@ class Face extends AbstractYoutuGateway
      */
     public function verify(array $options = [])
     {
-        return $this->send('faceverify', $options);
+        return $this->send('face_faceverify', $options);
     }
 
 
     /**
-     * 多人脸检测
+     * 人脸搜索
      * @param array $options
      * @return mixed
      * @throws \Crisen\AI\Exceptions\Exception
      */
-    public function search(array $options)
+    public function search(array $options = [])
     {
-        return $this->send('face_detectmultiface', $options);
+        return $this->send('face_faceidentify', $options);
     }
 
 

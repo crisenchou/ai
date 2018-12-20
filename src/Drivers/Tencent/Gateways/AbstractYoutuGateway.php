@@ -108,17 +108,6 @@ abstract class AbstractYoutuGateway
     }
 
 
-    private function genNonceStr($length = 22)
-    {
-        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        $str = "";
-        for ($i = 0; $i < $length; $i++) {
-            $str .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
-        }
-        return $str;
-    }
-
-
     private function setAppId()
     {
         $this->params['app_id'] = $this->driver->getAppId();
@@ -131,33 +120,12 @@ abstract class AbstractYoutuGateway
 
     private function setNonceStr()
     {
-        $this->params['nonce_str'] = $this->genNonceStr();
+        $this->params['nonce_str'] = $this->driver->genNonceStr();
     }
 
     private function sign($data)
     {
-//        $data = [
-//            'app_id' => $this->params['app_id'],
-//            'time_stamp' => $this->params['time_stamp'],
-//            'nonce_str' => $this->params['nonce_str'],
-//        ];
         return $this->driver->sign($data);
-    }
-
-    /**
-     * @param $action
-     * @param $arguments
-     * @return TencentResponse
-     * @throws Exception
-     */
-    public function __call($action, $arguments)
-    {
-        if ($this instanceof Ocr) {
-            if (!strpos($action, 'ocr')) {
-                $action = $action . 'ocr';
-            }
-        }
-        return $this->send($action, ...$arguments);
     }
 
 }

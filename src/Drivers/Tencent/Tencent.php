@@ -37,7 +37,6 @@ class Tencent implements DriverInterface
     }
 
 
-
     public function sign($params)
     {
         ksort($params);
@@ -50,6 +49,17 @@ class Tencent implements DriverInterface
         $str .= 'app_key=' . $this->appKey;
         $sign = strtoupper(md5($str));
         return $sign;
+    }
+
+
+    public function genNonceStr($length = 22)
+    {
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        $str = "";
+        for ($i = 0; $i < $length; $i++) {
+            $str .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
+        }
+        return $str;
     }
 
     /**

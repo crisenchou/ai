@@ -2,66 +2,65 @@
 /**
  * author: crisen
  * email: crisen@crisen.org
- * date: 18-12-17
+ * date: 18-12-20
  * description:
  */
 
 namespace Crisen\AI\Drivers\Tencent\Gateways;
 
 
-class Image extends AbstractYoutuGateway
+class Vision extends AbstractYoutuGateway
 {
 
     public function resourcePath(): array
     {
-        return ['image'];
+        return ['vision'];
     }
 
 
     /**
-     * 模糊图片识别
+     * 滤镜
      * @param array $options
      * @return \Crisen\AI\Drivers\Tencent\TencentResponse
      * @throws \Crisen\AI\Exceptions\Exception
      */
-    public function fuzzy(array $options = [])
+    public function imgFilter($options = [])
     {
-        return $this->send('image_fuzzy', $options);
+        return $this->send('vision_imgfilter', $options);
+    }
+
+    /**
+     * 看图说话
+     * @param array $options
+     * @return \Crisen\AI\Drivers\Tencent\TencentResponse
+     * @throws \Crisen\AI\Exceptions\Exception
+     */
+    public function imgToText($options = [])
+    {
+        return $this->send('vision_imgtotext', $options);
     }
 
 
     /**
-     * 食物识别
+     * 场景识别
      * @param array $options
      * @return \Crisen\AI\Drivers\Tencent\TencentResponse
      * @throws \Crisen\AI\Exceptions\Exception
      */
-    public function food(array $options = [])
+    public function scener($options = [])
     {
-        return $this->send('image_food', $options);
+        return $this->send('vision_scener', $options);
     }
 
     /**
-     * 图片标签识别
+     * 物体识别
      * @param array $options
      * @return \Crisen\AI\Drivers\Tencent\TencentResponse
      * @throws \Crisen\AI\Exceptions\Exception
      */
-    public function tag(array $options = [])
+    public function object($options = [])
     {
-        return $this->send('image_tag', $options);
-    }
-
-
-    /**
-     * 暴恐图片识别
-     * @param array $options
-     * @return \Crisen\AI\Drivers\Tencent\TencentResponse
-     * @throws \Crisen\AI\Exceptions\Exception
-     */
-    public function terrorism(array $options = [])
-    {
-        return $this->send('image_terrorism', $options);
+        return $this->send('vision_objectr', $options);
     }
 
 }

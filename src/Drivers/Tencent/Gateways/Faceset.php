@@ -18,7 +18,6 @@ class Faceset extends AbstractYoutuGateway
         return ['face'];
     }
 
-
     /**
      * 增加人脸
      * @param array $options
@@ -27,7 +26,7 @@ class Faceset extends AbstractYoutuGateway
      */
     public function add(array $options = [])
     {
-        return $this->send('addface', $options);
+        return $this->send('face_addface', $options);
     }
 
 
@@ -39,7 +38,7 @@ class Faceset extends AbstractYoutuGateway
      */
     public function delete(array $options = [])
     {
-        return $this->send('delface', $options);
+        return $this->send('face_delface', $options);
     }
 
 
@@ -51,7 +50,7 @@ class Faceset extends AbstractYoutuGateway
      */
     public function get(array $options = [])
     {
-        return $this->send('face_getinfo', $options);
+        return $this->send('face_getfaceinfo', $options);
     }
 
 

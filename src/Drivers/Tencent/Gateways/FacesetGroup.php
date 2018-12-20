@@ -26,7 +26,7 @@ class FacesetGroup extends AbstractYoutuGateway
      */
     public function get(array $options = [])
     {
-        return $this->send('getgroupids', $options);
+        return $this->send('face_getgroupids', $options);
 
     }
 
@@ -38,7 +38,7 @@ class FacesetGroup extends AbstractYoutuGateway
      */
     public function users(array $options = [])
     {
-        return $this->send('getpersonids', $options);
+        return $this->send('face_getpersonids', $options);
     }
 
 
