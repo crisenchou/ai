@@ -17,10 +17,51 @@ class FacesetUser extends AbstractGatewayTest
     }
 
 
-
     public function testAdd()
     {
-        $this->assertTrue(true);
+        $res = $this->gateway->add([
+            'group_ids' => $this->group,
+            'person_id' => $this->user,
+            'image' => $this->imageBase64Code(),
+            'person_name' => 'crisen'
+        ]);
+        $this->assertSuccess($res);
+    }
+
+
+    public function testFaces()
+    {
+        $res = $this->gateway->faces([
+            'person_id' => $this->user
+        ]);
+        $this->assertSuccess($res);
+    }
+
+    public function testGet()
+    {
+        $res = $this->gateway->get([
+            'person_id' => $this->user
+        ]);
+        $this->assertSuccess($res);
+    }
+
+    public function testUpdate()
+    {
+        $res = $this->gateway->update([
+            'person_id' => $this->user,
+            'person_name' => 'crisenchou',
+            'tag' => 'crisen-ai'
+        ]);
+        $this->assertSuccess($res);
+    }
+
+
+    public function testDelete()
+    {
+        $res = $this->gateway->update([
+            'person_id' => $this->user
+        ]);
+        $this->assertSuccess($res);
     }
 
 }

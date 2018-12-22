@@ -9,7 +9,7 @@
 namespace Crisen\AI\Drivers\Tencent\Gateways;
 
 
-class FacesetGroup extends AbstractYoutuGateway
+class FacesetGroup extends AbstractTencentGateway
 {
 
     public function resourcePath(): array

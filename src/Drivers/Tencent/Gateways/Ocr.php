@@ -9,7 +9,7 @@
 namespace Crisen\AI\Drivers\Tencent\Gateways;
 
 
-class Ocr extends AbstractYoutuGateway
+class Ocr extends AbstractTencentGateway
 {
 
     public function resourcePath(): array

@@ -9,7 +9,7 @@
 namespace Crisen\AI\Drivers\Tencent\Gateways;
 
 
-class FacesetUser extends AbstractYoutuGateway
+class FacesetUser extends AbstractTencentGateway
 {
 
 
@@ -73,7 +73,7 @@ class FacesetUser extends AbstractYoutuGateway
      * @return mixed
      * @throws \Crisen\AI\Exceptions\Exception
      */
-    public function getFaces(array $options = [])
+    public function faces(array $options = [])
     {
         return $this->send('face_getfaceids', $options);
     }

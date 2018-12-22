@@ -20,30 +20,28 @@ class ImageTest extends AbstractGatewayTest
 
     public function testFuzzy()
     {
-        $this->assertTrue(true);
+        $res = $this->gateway->base64($this->imageBase64Code())->fuzzy();
+        $this->assertSuccess($res);
     }
 
 
     public function testFood()
     {
-        $this->assertTrue(true);
+        $res = $this->gateway->base64($this->imageBase64Code())->food();
+        $this->assertSuccess($res);
     }
 
     public function testTag()
     {
-        $this->assertTrue(true);
-    }
-
-
-    public function testPorn()
-    {
-        $this->assertTrue(true);
+        $res = $this->gateway->base64($this->imageBase64Code())->tag();
+        $this->assertSuccess($res);
     }
 
 
     public function testTerrorism()
     {
-        $this->assertTrue(true);
+        $res = $this->gateway->base64($this->imageBase64Code())->terrorism();
+        $this->assertSuccess($res);
     }
 
 

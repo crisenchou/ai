@@ -10,12 +10,12 @@ namespace Crisen\AI\Tests\Tencent;
 
 
 use Crisen\AI\AI;
+use Crisen\AI\Drivers\Tencent\TencentResponse;
 use Crisen\AI\Tests\TestCase;
 
 abstract class AbstractBaseTest extends TestCase
 {
-
-
+    protected $log = true;
     protected $driver;
 
     public function __construct(string $name = null, array $data = [], string $dataName = '')
@@ -31,8 +31,11 @@ abstract class AbstractBaseTest extends TestCase
     }
 
 
-    public function assertSuccess()
+    public function assertSuccess(TencentResponse $response)
     {
-        $this->assertTrue(1);
+        if ($this->log) {
+            var_dump($response->getErrMsg());
+        }
+        $this->assertTrue(is_array($response->toArray()));
     }
 }

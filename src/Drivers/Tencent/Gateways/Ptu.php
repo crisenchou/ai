@@ -9,7 +9,7 @@
 namespace Crisen\AI\Drivers\Tencent\Gateways;
 
 
-class Ptu extends AbstractYoutuGateway
+class Ptu extends AbstractTencentGateway
 {
     public function resourcePath(): array
     {

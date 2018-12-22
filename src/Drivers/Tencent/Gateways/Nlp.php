@@ -9,7 +9,7 @@
 namespace Crisen\AI\Drivers\Tencent\Gateways;
 
 
-class Nlp extends AbstractYoutuGateway
+class Nlp extends AbstractTencentGateway
 {
     public function resourcePath(): array
     {

@@ -14,7 +14,7 @@ use Crisen\AI\Drivers\Tencent\Tencent;
 use Crisen\AI\Drivers\Tencent\TencentResponse;
 use Crisen\AI\Exceptions\Exception;
 
-abstract class AbstractYoutuGateway
+abstract class AbstractTencentGateway
 {
 
     protected $client;
@@ -51,7 +51,8 @@ abstract class AbstractYoutuGateway
      */
     public function url($url)
     {
-        $this->params['url'] = $url;
+        $content = file_get_contents($url);
+        $this->params['image'] = base64_encode($content);
         return $this;
     }
 

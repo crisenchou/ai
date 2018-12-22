@@ -9,7 +9,7 @@
 namespace Crisen\AI\Drivers\Tencent\Gateways;
 
 
-class Vision extends AbstractYoutuGateway
+class Vision extends AbstractTencentGateway
 {
 
     public function resourcePath(): array
@@ -62,5 +62,17 @@ class Vision extends AbstractYoutuGateway
     {
         return $this->send('vision_objectr', $options);
     }
+
+    /**
+     * 图片鉴黄
+     * @param array $options
+     * @return \Crisen\AI\Drivers\Tencent\TencentResponse
+     * @throws \Crisen\AI\Exceptions\Exception
+     */
+    public function porn($options = [])
+    {
+        return $this->send('vision_porn', $options);
+    }
+
 
 }

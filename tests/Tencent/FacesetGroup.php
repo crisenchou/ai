@@ -18,8 +18,18 @@ class FacesetGroup extends AbstractGatewayTest
     }
 
 
-    public function testAdd()
+    public function testGet()
     {
-        $this->assertTrue(true);
+        $res = $this->gateway->get();
+        $this->assertSuccess($res);
     }
+
+    public function testUsers()
+    {
+        $res = $this->gateway->users([
+            'group_id' => $this->group
+        ]);
+        $this->assertSuccess($res);
+    }
+
 }

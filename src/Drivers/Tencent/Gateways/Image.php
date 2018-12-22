@@ -9,7 +9,7 @@
 namespace Crisen\AI\Drivers\Tencent\Gateways;
 
 
-class Image extends AbstractYoutuGateway
+class Image extends AbstractTencentGateway
 {
 
     public function resourcePath(): array
