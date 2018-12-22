@@ -19,4 +19,4 @@
 - [腾讯ai](docs/tencent/README.md)
   - [人脸识别](docs/tencent/face.md)
   - [人脸库管理](docs/tencent/faceset.md)
-
+  - [OCR](docs/tencent/ocr.md)

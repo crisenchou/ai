@@ -20,6 +20,17 @@ $ai->face()->path($path )->detect();
 
 
 
+| 名称           | 路由        | 参数                      |
+| -------------- | ----------- | ------------------------- |
+| 人脸检测与分析 | detect      | image,mode                |
+| 多人脸检测     | multiDetect | image                     |
+| 跨年龄人脸识别 | crosssAge   | source_image,target_image |
+| 五官定位       | shape       | image                     |
+| 人脸对比       | compare     | source_image,target_image |
+| 人脸验证       | verify      | image,person_id           |
+
+
+
 ## 人脸检测与分析
 
 ~~~
