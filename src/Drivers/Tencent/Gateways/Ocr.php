@@ -110,15 +110,5 @@ class Ocr extends AbstractTencentGateway
         return $this->send('ocr_driverlicenseocr', $options);
     }
 
-    /**
-     * @param array $options
-     * @return \Crisen\AI\Drivers\Tencent\TencentResponse
-     * @throws \Crisen\AI\Exceptions\Exception
-     */
-    public function worddetect(array $options)
-    {
-        return $this->send('worddetect', $options);
-    }
-
 
 }

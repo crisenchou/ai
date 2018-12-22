@@ -10,10 +10,13 @@
     - [人脸搜索](docs/baidu/search.md)
     - [人脸对比](docs/baidu/match.md)
     - [身份验证](docs/baidu/person_verify.md)
-
   - 文字识别
   - 图像审核
   - 图像识别
   - 图像处理
   - 图像搜索
   - 人体分析
+- [腾讯ai](docs/tencent/README.md)
+  - [人脸识别](docs/tencent/face.md)
+  - [人脸库管理](docs/tencent/faceset.md)
+

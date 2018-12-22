@@ -3,6 +3,10 @@
 ## 获取ai实例
 
 ~~~
+use Crisen\AI\Ai;
+
+.....
+
 $config = [
      'app_id' => 'your appid',
      'api_key' => 'your api key',
@@ -47,7 +51,7 @@ $gateway->faceToken($path);
 
 ~~~
 // 如调用人脸检测
-$gateway = $ai->face()->url($url)->detect();
+$res = $ai->face()->url($url)->detect();
 ~~~
 
 ## 兼容官方的可选参数格式
