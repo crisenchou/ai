@@ -16,7 +16,10 @@ class Kg extends AbstractBaiduGateway
 
     public function resourcePath(): array
     {
-        // TODO: Implement resourcePath() method.
+
+        return [
+            'rest', '2.0', 'kg', 'v1'
+        ];
     }
     
 

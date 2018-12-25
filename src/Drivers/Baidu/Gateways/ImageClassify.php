@@ -17,16 +17,15 @@ class ImageClassify extends AbstractBaiduGateway
     public function resourcePath(): array
     {
         return [
-            'rest', '2.0', 'image-classify', 'v1'
+            'rest', '2.0', 'image-classify', 'v2'
         ];
     }
 
-//    public function headers()
-//    {
-//        return [
-//            'Content-Type' => 'application/json'
-//        ];
-//    }
-
+    public function headers()
+    {
+        return [
+            'Content-Type' => 'application/x-www-form-urlencoded'
+        ];
+    }
 
 }

@@ -14,8 +14,10 @@ class Nlp extends AbstractBaiduGateway
 {
     public function resourcePath(): array
     {
-        // TODO: Implement resourcePath() method.
-    }
 
+        return [
+            'rpc', '2.0', 'nlp','v1'
+        ];
+    }
 
 }
