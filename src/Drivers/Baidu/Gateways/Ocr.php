@@ -21,4 +21,11 @@ class Ocr extends AbstractBaiduGateway
     }
 
 
+    public function headers()
+    {
+        return [
+            'Content-Type' => 'application/x-www-form-urlencoded'
+        ];
+    }
+
 }
