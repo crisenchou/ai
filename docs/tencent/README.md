@@ -18,7 +18,7 @@ $ai = AI::tencent($config);
 
 > 特别说明 在后面的文章出现的$ai变量 如果没有特别说明 均为当前实例
 
-## 选择路由
+## 选择网关
 
 ~~~
 //人脸识别
@@ -27,7 +27,7 @@ $gateway = $ai->face();
 $gateway = $ai->faceset();
 ~~~
 
-## 调用动作
+## 调用路由
 
 ~~~
 $res = $gateway->detect([

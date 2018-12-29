@@ -46,7 +46,7 @@ class Ptu extends AbstractTencentGateway
      * @return \Crisen\AI\Drivers\Tencent\TencentResponse
      * @throws \Crisen\AI\Exceptions\Exception
      */
-    public function facedeCoration($options = [])
+    public function faceDecoration($options = [])
     {
         return $this->send('ptu_facedecoration', $options);
     }

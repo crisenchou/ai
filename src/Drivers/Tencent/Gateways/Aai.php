@@ -34,7 +34,7 @@ class Aai extends AbstractTencentGateway
      * @return mixed
      * @throws \Crisen\AI\Exceptions\Exception
      */
-    public function detectkeyword(array $options = [])
+    public function detectKeyword(array $options = [])
     {
         return $this->send('aai_detectkeyword', $options);
     }
@@ -46,7 +46,7 @@ class Aai extends AbstractTencentGateway
      * @return mixed
      * @throws \Crisen\AI\Exceptions\Exception
      */
-    public function wxasrlong(array $options = [])
+    public function asrLong(array $options = [])
     {
         return $this->send('aai_wxasrlong', $options);
     }

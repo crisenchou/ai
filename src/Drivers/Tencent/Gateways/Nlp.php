@@ -53,7 +53,7 @@ class Nlp extends AbstractTencentGateway
 
 
     /**
-     * 专有名词
+     * 同义词
      * @param array $options
      * @return mixed
      * @throws \Crisen\AI\Exceptions\Exception
@@ -103,7 +103,7 @@ class Nlp extends AbstractTencentGateway
      * @return mixed
      * @throws \Crisen\AI\Exceptions\Exception
      */
-    public function textTrans(array $options = [])
+    public function textTranslate(array $options = [])
     {
         return $this->send('nlp_texttrans', $options);
     }
