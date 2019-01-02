@@ -31,7 +31,7 @@ class FacesetUser extends AbstractBaiduGateway
      * @param string $group
      * @return AbstractBaiduGateway|void
      */
-    public function group(string $group = '')
+    public function group($group = '')
     {
         if (!$group) {
             $group = '@ALL';

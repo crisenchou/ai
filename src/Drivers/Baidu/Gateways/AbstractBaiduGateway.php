@@ -127,10 +127,10 @@ abstract class AbstractBaiduGateway
     }
 
     /**
-     * @param string $group
+     * @param $group
      * @return $this
      */
-    public function group(string $group)
+    public function group($group)
     {
         $this->params['group_id'] = $group;
         return $this;
