@@ -29,14 +29,14 @@ class FacesetUser extends AbstractBaiduGateway
 
     /**
      * @param string $group
-     * @return AbstractBaiduGateway|void
+     * @return AbstractBaiduGateway
      */
     public function group($group = '')
     {
         if (!$group) {
             $group = '@ALL';
         }
-        parent::group($group);
+        return parent::group($group);
     }
 
 
