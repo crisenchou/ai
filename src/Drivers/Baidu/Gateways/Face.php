@@ -10,6 +10,8 @@
 namespace Crisen\AI\Drivers\Baidu\Gateways;
 
 
+use Crisen\AI\Exceptions\Exception;
+
 class Face extends AbstractBaiduGateway
 {
 
@@ -87,6 +89,22 @@ class Face extends AbstractBaiduGateway
 
 
     /**
+     * @param array $options
+     * @param string $opertion
+     * @return mixed
+     * @throws Exception
+     */
+    public function verify($options = [], $op = 'person')
+    {
+        if (method_exists($this, $op . 'Verify')) {
+            return call_user_func([$this, $op . 'Verify'], $options);
+        } else {
+            throw new Exception("method [$op . 'Verify'] not exist");
+        }
+    }
+
+    /**
+     * 身份验证
      * @param array $options
      * @return mixed
      * @throws \Crisen\AI\Exceptions\Exception

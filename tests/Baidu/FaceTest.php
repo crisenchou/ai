@@ -48,7 +48,21 @@ class FaceTest extends GatewayTest
         $this->assertSuccess($response);
     }
 
-    // 身份验证
+
+    public function testVerify()
+    {
+        $response = $this->gateway->url($this->imageUrl())->verify([
+            'id_card_number' => '40000xxxxxxxxxxxx',
+            'name' => 'crisen'
+        ]);
+        $this->assertSuccess($response);
+        $response = $this->gateway->url($this->imageUrl())->verify([
+            'id_card_number' => '40000xxxxxxxxxxxx',
+            'name' => 'crisen'
+        ], 'face');
+        $this->assertSuccess($response);
+    }
+    
     public function testPersonVerify()
     {
         $response = $this->gateway->url($this->imageUrl())->personVerify([
