@@ -8,14 +8,11 @@
 
 namespace Crisen\AI\Drivers\Baidu;
 
-
 use Crisen\AI\Contracts\ResponseInterface;
 use Crisen\AI\Exceptions\Exception;
 
-
 class BaiduResponse implements ResponseInterface
 {
-
     protected $data;
 
     public function __construct(array $data = [])
@@ -31,8 +28,6 @@ class BaiduResponse implements ResponseInterface
      */
     public function __get($name)
     {
-
-
         if (array_key_exists($name, $this->data)) {
             return $this->data[$name];
         }
@@ -50,6 +45,10 @@ class BaiduResponse implements ResponseInterface
      */
     public function success()
     {
+        if (!isset($this->data['error_code'])) {
+            return true;
+        }
+
         if ($this->data['error_code'] == 0) {
             return true;
         }
@@ -78,6 +77,4 @@ class BaiduResponse implements ResponseInterface
         }
         return $this->data;
     }
-
-
 }

@@ -8,7 +8,6 @@
 
 namespace Crisen\AI\Drivers\Baidu;
 
-
 use Crisen\AI\Client;
 use Crisen\AI\Contracts\DriverInterface;
 use Crisen\AI\Exceptions\Exception;
@@ -64,6 +63,11 @@ class Baidu implements DriverInterface
         }
 
         $content = json_decode($result['content'], true);
+
+        if (!isset($content['access_token'])) {
+            throw new Exception('请求access token失败');
+        }
+
         $this->accessToken = $content['access_token'];
     }
 
