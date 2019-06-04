@@ -95,7 +95,7 @@ abstract class AbstractBaiduGateway
     public function send($action, $options = [])
     {
         $data = array_merge($this->params, $options);
-        $response = $this->client->post($this->buildUrl($action), json_encode($data));
+        $response = $this->client->post($this->buildUrl($action), $data);
         return $this->response($response);
     }
 
